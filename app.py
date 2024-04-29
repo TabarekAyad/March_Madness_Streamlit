@@ -39,3 +39,19 @@ with st.expander('About Streamlit'):
      st.image('https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png', width=250)
 
 
+# Add the caching decorator
+@st.cache_data
+def load_data(csv):
+    df = pd.read_csv(csv)
+    return df
+
+# Load the data CSV file
+NCAA = load_data("data/NCAA.csv")
+
+# Load the names CSV file
+NCAA_names = load_data("data/NCAA_names.csv")
+
+
+with st.expander('The data used'):
+     st.dataframe(NCAA)
+     st.dataframe(NCAA_names)
